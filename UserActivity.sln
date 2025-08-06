@@ -11,6 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sln", "sln", "{92C4677F-1DF
 		docker-compose.yml = docker-compose.yml
 		.dockerignore = .dockerignore
 		docker-compose.override.yml = docker-compose.override.yml
+		UserActivity.sln.DotSettings = UserActivity.sln.DotSettings
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserActivity.Api", "src\UserActivity.Api\UserActivity.Api.csproj", "{3601BB08-28CE-4885-83C6-E1970843DC80}"
