@@ -1,0 +1,24 @@
+services:
+  user-activity.api:
+    image: ${DOCKER_REGISTRY-}useractivityapi
+    container_name: user-activity-api
+    build:
+      context: .
+      dockerfile: src/UserActivity.Api/Dockerfile
+    depends_on:
+      - user-activity-db
+
+  user-activity-db:
+    image: postgres:17.5
+    container_name: user-activity-db
+    environment:
+      - POSTGRES_DB=user-activity
+      - POSTGRES_USER=user-activity-admin
+      - POSTGRES_PASSWORD=user-activity-pw
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "7432:5432"
+
+volumes:
+  pgdata:

@@ -1,0 +1,94 @@
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# IDE(s)
+*.sln.iml
+.idea/
+.vs/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+.history/
+
+# Build results
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+artifacts/
+
+# Architecture-specific
+x64/
+x86/
+[Ww][Ii][Nn]32/
+[Aa][Rr][Mm]*/
+bld/
+
+# Test results
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+*.coverage
+*.coveragexml
+*.trx
+*.binlog
+BenchmarkDotNet.Artifacts/
+
+# Code coverage
+coverage*.json
+coverage*.xml
+coverage*.info
+*.dotCover
+*.VisualState.xml
+TestResult.xml
+nunit-*.xml
+
+# ReSharper
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+
+# NCrunch
+_NCrunch_*
+.*crunch*.local.xml
+nCrunchTemp_*
+
+# MSBuild files
+*.tmp
+*.tmp_proj
+*.log
+*.tlog
+*.rsp
+*.sbr
+*.cache
+!?*.[Cc]ache/
+*.msi
+*.msm
+*.msp
+*.cab
+
+# NuGet
+*.nupkg
+*.snupkg
+*.nuget.props
+*.nuget.targets
+**/[Pp]ackages/*
+!**/[Pp]ackages/build/
+
+# Windows/macOS/Linux specific
+*.DS_Store
+ehthumbs.db
+Icon?
+Thumbs.db
+
+# Containers (e.g. local dev containers)
+.containers/
+
+# node_modules (for full-stack or Blazor projects)
+node_modules/
