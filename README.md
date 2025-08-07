@@ -99,6 +99,10 @@ cd user-activity
 docker-compose up -d
 ```
 
+⚠️ If the api container fails to start, try to re-start it manually.
+
+⚠️ There is a chance that the database container is not ready when the API tries to connect to it.
+
 That's it! The application will automatically:
 - Build the .NET 8 API
 - Start PostgreSQL database
@@ -108,12 +112,12 @@ That's it! The application will automatically:
 ### Access the Application
 - **API**: http://localhost:8000
 - **Swagger UI**: http://localhost:8000/swagger
-- **Database**: localhost:7432 (PostgreSQL)
+- **Database**: localhost:5432 (PostgreSQL)
 
 ### Required Ports
 Make sure these ports are available on your machine:
 - **8000** - API application
-- **7432** - PostgreSQL database
+- **5432** - PostgreSQL database
 
 ## 🐳 Docker Services
 
@@ -122,7 +126,7 @@ The Docker Compose setup includes:
 | Service | Container Name | Port | Description |
 |---------|----------------|------|-------------|
 | **user-activity.api** | user-activity-api | 8000 | .NET 8 Web API |
-| **user-activity-db** | user-activity-db | 7432 | PostgreSQL 17.5 |
+| **user-activity-db** | user-activity-db | 5432 | PostgreSQL 17.5 |
 
 
 ## 📄 License Compliance
