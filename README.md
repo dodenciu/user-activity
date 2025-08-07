@@ -92,7 +92,7 @@ tests/
 ### Quick Start
 ```bash
 # Clone the repository
-git clone <repository-url>
+git clone https://github.com/dodenciu/user-activity.git
 cd user-activity
 
 # Start everything with Docker Compose
