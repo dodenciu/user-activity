@@ -1,3 +1,5 @@
+using System.Reflection;
+using Microsoft.OpenApi.Models;
 using UserActivity.Api.Extensions;
 using UserActivity.Application;
 using UserActivity.Infrastructure;
@@ -12,7 +14,18 @@ builder.Services.AddControllers();
 builder.Services.AddProblemDetails(
     options => options.CustomizeProblemDetails = context => context.HandleFluentValidation());
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(swaggerGenOptions =>
+{
+    var assembly = Assembly.GetExecutingAssembly();
+    string? assemblyName = assembly.GetName().Name;
+
+    swaggerGenOptions.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, $"{assemblyName}.xml"));
+    swaggerGenOptions.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = assemblyName,
+        Version = "v1"
+    });
+});
 
 WebApplication app = builder.Build();
 
@@ -30,6 +43,8 @@ await app.RunAsync().ConfigureAwait(false);
 
 namespace UserActivity.Api
 {
+    /// <summary>
+    /// </summary>
     public abstract partial class Program
     {
     }

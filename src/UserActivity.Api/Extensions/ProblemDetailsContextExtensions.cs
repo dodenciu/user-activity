@@ -3,6 +3,8 @@ using UserActivity.Application;
 
 namespace UserActivity.Api.Extensions;
 
+/// <summary>
+/// </summary>
 public static class ProblemDetailsContextExtensions
 {
     internal static bool HandleFluentValidation(this ProblemDetailsContext context)

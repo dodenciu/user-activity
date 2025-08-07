@@ -12,12 +12,17 @@ using UserActivity.Domain.Abstractions;
 
 namespace UserActivity.Api.Controllers;
 
+/// <summary>
+/// Controller for managing user-related operations.
+/// </summary>
 [ApiController]
 [Route("api/users")]
 public class UsersController : ControllerBase
 {
     private readonly ISender _sender;
     
+    /// <summary>
+    /// </summary>
     public UsersController(ISender sender)
     {
         ArgumentNullException.ThrowIfNull(sender);
@@ -25,6 +30,15 @@ public class UsersController : ControllerBase
         _sender = sender;
     }
     
+    /// <summary>
+    /// Creates a new user.
+    /// </summary>
+    /// <param name="command">The user creation command containing user details.</param>
+    /// <param name="cancellationToken">Cancellation token.</param>
+    /// <returns>No content if successful.</returns>
+    /// <response code="204">User created successfully.</response>
+    /// <response code="400">Bad request if the user data is invalid.</response>
+    /// <response code="500">Internal server error.</response>
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -42,6 +56,14 @@ public class UsersController : ControllerBase
         return NoContent();
     }
     
+    /// <summary>
+    /// Retrieves a user by their unique identifier.
+    /// </summary>
+    /// <param name="userId">The unique identifier of the user.</param>
+    /// <param name="cancellationToken">Cancellation token.</param>
+    /// <returns>The user details if found.</returns>
+    /// <response code="200">User found and returned successfully.</response>
+    /// <response code="404">User not found.</response>
     [HttpGet("{userId:guid}")]
     [ProducesResponseType(typeof(UserResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -63,6 +85,16 @@ public class UsersController : ControllerBase
         return Ok(userResponse.Value);
     }
     
+    /// <summary>
+    /// Updates an existing user's details.
+    /// </summary>
+    /// <param name="userId">The unique identifier of the user to update.</param>
+    /// <param name="updateUserDetailsCommand">The user update command containing new user details.</param>
+    /// <param name="cancellationToken">Cancellation token.</param>
+    /// <returns>No content if successful.</returns>
+    /// <response code="204">User updated successfully.</response>
+    /// <response code="400">Bad request if the user data is invalid.</response>
+    /// <response code="500">Internal server error.</response>
     [HttpPut("{userId:guid}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -83,6 +115,17 @@ public class UsersController : ControllerBase
         return NoContent();
     }
     
+    /// <summary>
+    /// Changes a user's password.
+    /// </summary>
+    /// <param name="userId">The unique identifier of the user.</param>
+    /// <param name="changePasswordCommand">The password change command containing the new password.</param>
+    /// <param name="cancellationToken">Cancellation token.</param>
+    /// <returns>No content if successful.</returns>
+    /// <response code="204">Password changed successfully.</response>
+    /// <response code="400">Bad request if the password data is invalid.</response>
+    /// <response code="404">User not found.</response>
+    /// <response code="500">Internal server error.</response>
     [HttpPatch("{userId:guid}/password")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -109,6 +152,15 @@ public class UsersController : ControllerBase
         return NoContent();
     }
     
+    /// <summary>
+    /// Deletes a user by their unique identifier.
+    /// </summary>
+    /// <param name="userId">The unique identifier of the user to delete.</param>
+    /// <param name="cancellationToken">Cancellation token.</param>
+    /// <returns>No content if successful.</returns>
+    /// <response code="204">User deleted successfully.</response>
+    /// <response code="404">User not found.</response>
+    /// <response code="500">Internal server error.</response>
     [HttpDelete("{userId:guid}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -131,6 +183,12 @@ public class UsersController : ControllerBase
         return NoContent();
     }
     
+    /// <summary>
+    /// Retrieves a list of all users.
+    /// </summary>
+    /// <param name="cancellationToken">Cancellation token.</param>
+    /// <returns>A list of all users.</returns>
+    /// <response code="200">Users retrieved successfully.</response>
     [HttpGet]
     [ProducesResponseType(typeof(IReadOnlyList<UserResponse>), StatusCodes.Status200OK)]
     public async Task<IActionResult> ListUsersAsync(CancellationToken cancellationToken)
@@ -144,6 +202,15 @@ public class UsersController : ControllerBase
         return Ok(users);
     }
     
+    /// <summary>
+    /// Creates a new transaction for a specific user.
+    /// </summary>
+    /// <param name="userId">The unique identifier of the user.</param>
+    /// <param name="createTransactionCommand">The transaction creation command containing transaction details.</param>
+    /// <param name="cancellationToken">Cancellation token.</param>
+    /// <returns>No content if successful.</returns>
+    /// <response code="200">Transaction created successfully.</response>
+    /// <response code="404">User not found.</response>
     [HttpPost("{userId:guid}/transactions")]
     [ProducesResponseType(typeof(UserResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]

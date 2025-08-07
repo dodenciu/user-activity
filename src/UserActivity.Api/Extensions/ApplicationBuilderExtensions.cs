@@ -3,8 +3,12 @@ using UserActivity.Infrastructure;
 
 namespace UserActivity.Api.Extensions;
 
+/// <summary>
+/// </summary>
 public static class ApplicationBuilderExtensions
 {
+    /// <summary>
+    /// </summary>
     public static void ApplyMigrations(this IApplicationBuilder app)
     {
         const string testingDatabaseProviderName = "Microsoft.EntityFrameworkCore.Sqlite";
