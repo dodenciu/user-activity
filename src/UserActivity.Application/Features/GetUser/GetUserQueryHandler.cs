@@ -1,9 +1,11 @@
 using AutoMapper;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
+using UserActivity.Application.Common;
 using UserActivity.Domain;
 using UserActivity.Domain.Abstractions;
 
-namespace UserActivity.Application.GetUser;
+namespace UserActivity.Application.Features.GetUser;
 
 public class GetUserQueryHandler : IRequestHandler<GetUserQuery, Result<UserResponse>>
 {
@@ -22,7 +24,9 @@ public class GetUserQueryHandler : IRequestHandler<GetUserQuery, Result<UserResp
         
         User? user = await _appDbContext
             .Users
-            .FindAsync([request.UserId], cancellationToken)
+            .AsNoTracking()
+            .Include(user => user.Transactions)
+            .FirstOrDefaultAsync(user => user.Id == request.UserId, cancellationToken)
             .ConfigureAwait(false);
         
         if (user is null)

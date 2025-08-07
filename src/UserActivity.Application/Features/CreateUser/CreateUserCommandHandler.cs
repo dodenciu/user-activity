@@ -2,7 +2,7 @@ using AutoMapper;
 using MediatR;
 using UserActivity.Domain;
 
-namespace UserActivity.Application.CreateUser;
+namespace UserActivity.Application.Features.CreateUser;
 
 public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand>
 {

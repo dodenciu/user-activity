@@ -22,15 +22,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="ChangeUserPassword\" />
-      <Folder Include="DeleteUser\" />
-      <Folder Include="GetTotalTransactionAmount\" />
-      <Folder Include="ListTransactions\" />
-      <Folder Include="ListUsers\" />
-      <Folder Include="UpdateUserDetails\" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\UserActivity.Domain\UserActivity.Domain.csproj" />
     </ItemGroup>
 

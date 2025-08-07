@@ -3,7 +3,8 @@ using System.Net.Http.Headers;
 using System.Net.Mime;
 using System.Text;
 using System.Text.Json;
-using UserActivity.Application.CreateUser;
+using UserActivity.Application.Common;
+using UserActivity.Application.Features.CreateUser;
 
 namespace UserActivity.IntegrationTests;
 

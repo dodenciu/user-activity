@@ -1,14 +1,10 @@
 using MediatR;
+using UserActivity.Application.Common;
 
-namespace UserActivity.Application.CreateUser;
+namespace UserActivity.Application.Features.CreateUser;
 
 public sealed record CreateUserCommand(
     string Name, 
     string Email, 
     string RawPassword, 
     CreateAddressCommand Address) : IRequest;
-
-public sealed record CreateAddressCommand(
-    string Country, 
-    string City, 
-    string Street);

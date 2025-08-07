@@ -1,7 +1,7 @@
 using AutoMapper;
 using UserActivity.Domain;
 
-namespace UserActivity.Application.GetUser;
+namespace UserActivity.Application.Common.MappingProfiles;
 
 public class GetUserMappingProfile : Profile
 {
