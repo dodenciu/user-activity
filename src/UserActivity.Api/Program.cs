@@ -23,7 +23,14 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseExceptionHandler();
-app.MapControllers();
 app.ApplyMigrations();
+app.MapControllers();
 
 await app.RunAsync().ConfigureAwait(false);
+
+namespace UserActivity.Api
+{
+    public abstract partial class Program
+    {
+    }
+}

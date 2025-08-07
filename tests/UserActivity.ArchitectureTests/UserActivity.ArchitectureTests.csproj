@@ -15,10 +15,18 @@
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0"/>
         <PackageReference Include="xunit" Version="2.5.3"/>
         <PackageReference Include="xunit.runner.visualstudio" Version="2.5.3"/>
+        <PackageReference Include="NetArchTest.Rules" Version="1.3.2" />
     </ItemGroup>
 
     <ItemGroup>
         <Using Include="Xunit"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\src\UserActivity.Api\UserActivity.Api.csproj" />
+      <ProjectReference Include="..\..\src\UserActivity.Application\UserActivity.Application.csproj" />
+      <ProjectReference Include="..\..\src\UserActivity.Domain\UserActivity.Domain.csproj" />
+      <ProjectReference Include="..\..\src\UserActivity.Infrastructure\UserActivity.Infrastructure.csproj" />
     </ItemGroup>
 
 </Project>

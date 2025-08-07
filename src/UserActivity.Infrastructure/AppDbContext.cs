@@ -1,9 +1,10 @@
 using Microsoft.EntityFrameworkCore;
+using UserActivity.Application;
 using UserActivity.Domain;
 
 namespace UserActivity.Infrastructure;
 
-public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
+public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options), IAppDbContext
 {
     public DbSet<User> Users { get; protected set; }
     public DbSet<Transaction> Transactions { get; protected set; }

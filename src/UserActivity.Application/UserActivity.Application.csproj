@@ -5,6 +5,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <NoWarn>$(NoWarn);CA1032</NoWarn>
+        <NoWarn>$(NoWarn);CA1040</NoWarn>
     </PropertyGroup>
 
     <ItemGroup>
@@ -12,6 +13,7 @@
         <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="8.0.0" />
         <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.1" />
         <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.11" />
         <PackageReference Include="FluentValidation" Version="11.11.0" />
         <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.11.0" />
         <PackageReference Include="System.Linq.Async" Version="6.0.1" />
@@ -30,7 +32,6 @@
 
     <ItemGroup>
       <ProjectReference Include="..\UserActivity.Domain\UserActivity.Domain.csproj" />
-      <ProjectReference Include="..\UserActivity.Infrastructure\UserActivity.Infrastructure.csproj" />
     </ItemGroup>
 
 

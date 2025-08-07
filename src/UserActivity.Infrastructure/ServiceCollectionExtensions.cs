@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
+using UserActivity.Application;
 
 namespace UserActivity.Infrastructure;
 
@@ -17,6 +18,8 @@ public static class ServiceCollectionExtensions
             .ValidateDataAnnotations()
             .ValidateOnStart();
 
+        services.AddScoped<IAppDbContext, AppDbContext>();
+        
         services.AddDbContext<AppDbContext>((sp, options) =>
             options.UseNpgsql(
                     sp.GetRequiredService<IOptions<UserActivityPostgreSqlOptions>>()

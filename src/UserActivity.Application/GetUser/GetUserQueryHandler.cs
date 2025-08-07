@@ -2,16 +2,15 @@ using AutoMapper;
 using MediatR;
 using UserActivity.Domain;
 using UserActivity.Domain.Abstractions;
-using UserActivity.Infrastructure;
 
 namespace UserActivity.Application.GetUser;
 
 public class GetUserQueryHandler : IRequestHandler<GetUserQuery, Result<UserResponse>>
 {
-    private readonly AppDbContext _appDbContext;
+    private readonly IAppDbContext _appDbContext;
     private readonly IMapper _mapper;
 
-    public GetUserQueryHandler(AppDbContext appDbContext, IMapper mapper)
+    public GetUserQueryHandler(IAppDbContext appDbContext, IMapper mapper)
     {
         _appDbContext = appDbContext;
         _mapper = mapper;

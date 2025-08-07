@@ -1,16 +1,15 @@
 using AutoMapper;
 using MediatR;
 using UserActivity.Domain;
-using UserActivity.Infrastructure;
 
 namespace UserActivity.Application.CreateUser;
 
 public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand>
 {
-    private readonly AppDbContext _appDbContext;
+    private readonly IAppDbContext _appDbContext;
     private readonly IMapper _mapper;
     
-    public CreateUserCommandHandler(AppDbContext appDbContext, IMapper mapper)
+    public CreateUserCommandHandler(IAppDbContext appDbContext, IMapper mapper)
     {
         ArgumentNullException.ThrowIfNull(appDbContext);
         
@@ -29,7 +28,7 @@ public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand>
             request.RawPassword, 
             address);
         
-        _appDbContext.Add(user);
+        _appDbContext.Users.Add(user);
 
         await _appDbContext
             .SaveChangesAsync(cancellationToken)

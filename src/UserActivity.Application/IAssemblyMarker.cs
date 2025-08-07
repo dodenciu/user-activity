@@ -1,3 +1,3 @@
 namespace UserActivity.Application;
 
-internal interface IAssemblyMarker;
+public interface IAssemblyMarker;
