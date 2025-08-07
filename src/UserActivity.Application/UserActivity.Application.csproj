@@ -4,6 +4,34 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <NoWarn>$(NoWarn);CA1032</NoWarn>
     </PropertyGroup>
-    
+
+    <ItemGroup>
+        <PackageReference Include="MediatR" Version="12.4.1" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="8.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.1" />
+        <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
+        <PackageReference Include="FluentValidation" Version="11.11.0" />
+        <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.11.0" />
+        <PackageReference Include="System.Linq.Async" Version="6.0.1" />
+        <PackageReference Include="System.Linq.Dynamic.Core" Version="1.6.5" />
+        <PackageReference Include="AutoMapper" Version="14.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="ChangeUserPassword\" />
+      <Folder Include="DeleteUser\" />
+      <Folder Include="GetTotalTransactionAmount\" />
+      <Folder Include="ListTransactions\" />
+      <Folder Include="ListUsers\" />
+      <Folder Include="UpdateUserDetails\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\UserActivity.Domain\UserActivity.Domain.csproj" />
+      <ProjectReference Include="..\UserActivity.Infrastructure\UserActivity.Infrastructure.csproj" />
+    </ItemGroup>
+
+
 </Project>

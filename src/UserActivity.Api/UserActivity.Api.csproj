@@ -17,5 +17,8 @@
       <ProjectReference Include="..\UserActivity.Application\UserActivity.Application.csproj" />
       <ProjectReference Include="..\UserActivity.Infrastructure\UserActivity.Infrastructure.csproj" />
     </ItemGroup>
+    <ItemGroup>
+      <Folder Include="Middlewares\" />
+    </ItemGroup>
     
 </Project>

@@ -42,12 +42,14 @@ public sealed class User : Entity
     
     public Result ChangePassword(string newRawPassword)
     {
-        if (HashedPassword == BasicHasher.Hash(newRawPassword))
+        string newHashedPassword = BasicHasher.Hash(newRawPassword);
+        
+        if (HashedPassword == newHashedPassword)
         {
             return Result.Failure<User>(UserErrors.SamePassword);
         }
         
-        HashedPassword = BasicHasher.Hash(newRawPassword);
+        HashedPassword = newHashedPassword;
         
         return Result.Success();
     }

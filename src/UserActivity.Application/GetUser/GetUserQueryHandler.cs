@@ -1,0 +1,38 @@
+using AutoMapper;
+using MediatR;
+using UserActivity.Domain;
+using UserActivity.Domain.Abstractions;
+using UserActivity.Infrastructure;
+
+namespace UserActivity.Application.GetUser;
+
+public class GetUserQueryHandler : IRequestHandler<GetUserQuery, Result<UserResponse>>
+{
+    private readonly AppDbContext _appDbContext;
+    private readonly IMapper _mapper;
+
+    public GetUserQueryHandler(AppDbContext appDbContext, IMapper mapper)
+    {
+        _appDbContext = appDbContext;
+        _mapper = mapper;
+    }
+
+    public async Task<Result<UserResponse>> Handle(GetUserQuery request, CancellationToken cancellationToken)
+    {
+        ArgumentNullException.ThrowIfNull(request);
+        
+        User? user = await _appDbContext
+            .Users
+            .FindAsync([request.UserId], cancellationToken)
+            .ConfigureAwait(false);
+        
+        if (user is null)
+        {
+            return Result.Failure<UserResponse>(UserErrors.NotFound);
+        }
+
+        UserResponse userResponse = _mapper.Map<UserResponse>(user);
+
+        return Result.Success(userResponse);
+    }
+}

@@ -1,10 +1,16 @@
+using UserActivity.Api.Extensions;
+using UserActivity.Application;
 using UserActivity.Infrastructure;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddApplication();
 
 builder.Services.AddControllers();
+
+builder.Services.AddProblemDetails(
+    options => options.CustomizeProblemDetails = context => context.HandleFluentValidation());
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -16,6 +22,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseExceptionHandler();
 app.MapControllers();
+app.ApplyMigrations();
 
 await app.RunAsync().ConfigureAwait(false);

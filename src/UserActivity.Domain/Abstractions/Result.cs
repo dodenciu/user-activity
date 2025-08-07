@@ -4,10 +4,10 @@ namespace UserActivity.Domain.Abstractions;
 
 public class Result
 {
-    public Result(bool isSuccess, UseCaseError error)
+    public Result(bool isSuccess, AppError error)
     {
-        if (isSuccess && error != UseCaseError.None 
-            || !isSuccess && error == UseCaseError.None)
+        if (isSuccess && error != AppError.None 
+            || !isSuccess && error == AppError.None)
         {
             throw new InvalidOperationException();
         }
@@ -20,19 +20,19 @@ public class Result
 
     public bool IsFailure => !IsSuccess;
 
-    public UseCaseError Error { get; }
+    public AppError Error { get; }
 
-    public static Result Success() => new(true, UseCaseError.None);
-    public static Result<TValue> Success<TValue>(TValue value) => new(value, true, UseCaseError.None);
+    public static Result Success() => new(true, AppError.None);
+    public static Result<TValue> Success<TValue>(TValue value) => new(value, true, AppError.None);
 
-    public static Result Failure(UseCaseError error) => new(false, error);
-    public static Result<TValue> Failure<TValue>(UseCaseError error) => new(default, false, error);
+    public static Result Failure(AppError error) => new(false, error);
+    public static Result<TValue> Failure<TValue>(AppError error) => new(default, false, error);
 
     public static Result<TValue> Create<TValue>(TValue? value) =>
-        value is not null ? Success(value) : Failure<TValue>(UseCaseError.NullValue);
+        value is not null ? Success(value) : Failure<TValue>(AppError.NullValue);
 }
 
-public class Result<TValue>(TValue? value, bool isSuccess, UseCaseError error) : Result(isSuccess, error)
+public class Result<TValue>(TValue? value, bool isSuccess, AppError error) : Result(isSuccess, error)
 {
     [NotNull]
     public TValue Value => IsSuccess
